@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo Ping-Pong</title>
+    <style>
+        * {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    
 </head>
 <body>
     <canvas>
@@ -13,6 +21,8 @@
         const canvasEl = document.querySelector('canvas'),
             canvasCtx = canvasEl.getContext('2d')
         
+        const linewidth = 15
+
         function setup() {
             canvasEl.width = canvasCtx.width = window.innerWidth
             canvasEl.height = canvasCtx.height = window.innerHeight
@@ -20,8 +30,35 @@
         }
 
         function draw() {
+            //desenho do campo
+            canvasCtx.fillStyle = '#286047'
+            canvasCtx.fillRect(0, 0, window.innerWidth, window.innerHeight)
 
+            // desenho da linha central
+
+            canvasCtx.fillStyle = '#ffffff'
+            const x = window.innerWidth / 2 - linewidth / 2
+            const y = 0
+            const w = linewidth
+            const h = window.innerHeight
+
+            canvasCtx.fillRect(x, y, w, h )
+
+            //desenho da raquete esquerda
+            canvasCtx.fillRect(10, 400, linewidth, 200)
+
+            //desenho da raquete direita
+            canvasCtx.fillRect(window.innerWidth - linewidth - 10, 120, linewidth, 200)
+
+            //desenho da bolinha
+            canvasCtx.beginPath()
+            canvasCtx.arc(500, 300, 20, 0, 2 * Math.PI, false)
+            canvasCtx.fill()
+            //desenho do placar
         }
+
+        setup()
+        draw()
     </script>
 </body>
 </html>
