@@ -23,6 +23,10 @@
         
         const linewidth = 15
 
+        const mouse = {
+            x: 0, y: 0
+        }
+
         const field = {
 
             w: window.innerWidth,
@@ -51,9 +55,14 @@
             y: 100,
             w: line.w,
             h: 200,
+            _move: function() {
+                this.y = mouse.y - this.h / 2
+            },
             draw: function() {
                 canvasCtx.fillStyle = '#ffffff'
                 canvasCtx.fillRect(this.x, this.y, this.w, this.h)
+
+                this._move()
             }
         }
 
@@ -63,10 +72,13 @@
             y: 100,
             w: line.w,
             h: 200,
-            
+            _move: function() {
+                this.y = ball.y 
+            },
             draw: function() {
                 canvasCtx.fillStyle = '#ffffff'
                 canvasCtx.fillRect(this.x, this.y, this.w, this.h)
+                this._move()
             }
         }
 
@@ -89,6 +101,9 @@
             y: 200,
             r: 20,
             speed: 5, 
+            _calcPosition: function() {
+                if ()
+            },
             _move: function(){
                 this.x +=1 * this.speed
                 this.y += 1 * this.speed
@@ -140,6 +155,12 @@
         }
         setup()
         main()
+
+        canvasEl.addEventListener('mousemove', function(e){
+            mouse.x = e.pageX
+            mouse.y = e.pageY
+        })
+
     </script>
 </body>
 </html>
